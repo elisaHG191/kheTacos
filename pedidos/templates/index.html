@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio | La Taquería{% endblock %}
+
+{% block content %}
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido a La Taquería</h1>
+            <p>Sistema de gestión completo para tu negocio de tacos</p>
+            <button class="btn-primary" onclick="nuevaOrden()">
+                <i class="fa-solid fa-cart-plus"></i> Nueva Orden
+            </button>
+        </div>
+    </header>
+
+    <section class="stats-grid">
+        <div class="card stat-card">
+            <div class="icon-box blue">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h3>Órdenes Totales</h3>
+            <p class="number">{{ ordenes_totales|default:"0" }}</p>
+        </div>
+
+        <div class="card stat-card">
+            <div class="icon-box green">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>Clientes</h3>
+            <p class="number">{{ clientes_totales|default:"0" }}</p>
+        </div>
+
+        <div class="card stat-card">
+            <div class="icon-box orange">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3>Platillos en Menú</h3>
+            <p class="number">{{ platillos_totales|default:"12" }}</p>
+        </div>
+    </section>
+
+    <section class="features-section card">
+        <h2>Características del Sistema</h2>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="feature-text">
+                    <h4>Gestión de Órdenes</h4>
+                    <p>Crea, edita y elimina órdenes. Asigna clientes y selecciona productos del menú.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-address-book"></i></div>
+                <div class="feature-text">
+                    <h4>Base de Clientes</h4>
+                    <p>Registra y administra información de tus clientes frecuentes.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-burger"></i></div>
+                <div class="feature-text">
+                    <h4>Menú Completo</h4>
+                    <p>Visualiza todos tus tacos y bebidas con sus ingredientes.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="feature-text">
+                    <h4>Búsqueda Avanzada</h4>
+                    <p>Encuentra rápidamente clientes y órdenes específicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}La Taquería - Sistema de Gestión{% endblock %}</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">
+            <i class="fa-solid fa-utensils"></i> La Taquería
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="active"><i class="fa-solid fa-home"></i> Inicio</a></li>
+            <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> Órdenes</a></li>
+            <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+            <li><a href="#"><i class="fa-solid fa-book-open"></i> Menú</a></li>
+            <li><a href="#"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
+            <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="help-btn">
+        <i class="fa-solid fa-question"></i>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
