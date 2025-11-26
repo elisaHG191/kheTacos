@@ -1,0 +1,2 @@
+# kheTacos
+Proyecto escolar Django
