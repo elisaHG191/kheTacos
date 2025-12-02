@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+</head>
+<body>
+    <h1>Editar Cliente: {{ cliente.nombre }}</h1>
+
+    {% if mensaje %}
+        <div style="background-color: #d4edda; color: #155724; padding: 10px;">
+            {{ mensaje }} <br>
+            <a href="/buscar/">Volver al buscador</a>
+        </div>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" value="{{ cliente.nombre }}" required><br><br>
+
+        <label>Apellidos:</label><br>
+        <input type="text" name="apellidos" value="{{ cliente.apellidos }}" required><br><br>
+
+        <label>Teléfono:</label><br>
+        <input type="tel" name="telefono" value="{{ cliente.telefono }}" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ cliente.email }}"><br><br>
+
+        <label>Dirección:</label><br>
+        <input type="text" name="direccion" value="{{ cliente.direccion }}" required><br><br>
+
+        <label>Tacos Favoritos:</label><br>
+        <select name="tacos_pref">
+            <option value="pastor" {% if cliente.tacos_pref == 'pastor' %}selected{% endif %}>Pastor</option>
+            <option value="suadero" {% if cliente.tacos_pref == 'suadero' %}selected{% endif %}>Suadero</option>
+            <option value="asada" {% if cliente.tacos_pref == 'asada' %}selected{% endif %}>Asada</option>
+            <option value="barbacoa" {% if cliente.tacos_pref == 'barbacoa' %}selected{% endif %}>Barbacoa</option>
+            <option value="carnitas" {% if cliente.tacos_pref == 'carnitas' %}selected{% endif %}>Carnitas</option>
+        </select><br><br>
+
+        <input type="submit" value="Actualizar Datos">
+    </form>
+    
+    <br>
+    <a href="/buscar/">Cancelar y volver</a>
+</body>
+</html>
