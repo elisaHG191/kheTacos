@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Cliente</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Buscar Clientes{% endblock %}
+
+{% block content %}
+
 <body>
     <h1>Editar Cliente: {{ cliente.nombre }}</h1>
 
@@ -47,4 +48,4 @@
     <br>
     <a href="/buscar/">Cancelar y volver</a>
 </body>
-</html>
+{% endblock %}
