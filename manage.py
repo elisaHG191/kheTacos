@@ -2,9 +2,12 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+# Agrega esto
+from dotenv import load_dotenv
 
 def main():
+    # Agrega esto al inicio
+    load_dotenv()
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sistema_taqueria.settings')
     try:
