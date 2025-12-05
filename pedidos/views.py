@@ -106,3 +106,15 @@ def home(request):  # <--- TIENE QUE LLAMARSE 'home'
     }
     return render(request, 'index.html', context)
 
+def faq(request):  # <--- TIENE QUE LLAMARSE 'home'
+    return render(request, 'faq.html')
+
+def registroOrden(request):  # <--- TIENE QUE LLAMARSE 'home'
+    return render(request, 'registroOrden.html')
+
+def contacto(request):  # <--- TIENE QUE LLAMARSE 'home'
+    return render(request, 'contacto.html')
+
+def menu(request):  # <--- TIENE QUE LLAMARSE 'home'
+    return render(request, 'menu.html')
+

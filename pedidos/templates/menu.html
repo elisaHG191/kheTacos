@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Nuestro Menú - La Taquería{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 40px; margin-bottom: 30px; background-image: none; background-color: #333;">
+    <h1>Nuestro Menú</h1>
+    <p>Los mejores tacos de la ciudad, preparados al momento.</p>
+</div>
+
+<div class="features-section">
+    <h2 style="border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px;">Tacos Clásicos</h2>
+    
+    <div class="features-grid" style="margin-top: 20px;">
+        
+        <div class="card feature-item">
+            <div class="feature-icon">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+            <div class="feature-text">
+                <h4>Taco al Pastor</h4>
+                <p>Carne de cerdo adobada, piña, cilantro y cebolla.</p>
+                <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">$15.00</span>
+            </div>
+        </div>
+
+        <div class="card feature-item">
+            <div class="feature-icon">
+                <i class="fa-solid fa-cow"></i>
+            </div>
+            <div class="feature-text">
+                <h4>Taco de Asada</h4>
+                <p>Bistec de res selecto a la plancha.</p>
+                <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">$18.00</span>
+            </div>
+        </div>
+
+        <div class="card feature-item">
+            <div class="feature-icon">
+                <i class="fa-solid fa-bacon"></i>
+            </div>
+            <div class="feature-text">
+                <h4>Taco de Suadero</h4>
+                <p>Deliciosa carne de res cocinada lentamente en su jugo.</p>
+                <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">$15.00</span>
+            </div>
+        </div>
+
+         <div class="card feature-item">
+            <div class="feature-icon">
+                <i class="fa-solid fa-drumstick-bite"></i>
+            </div>
+            <div class="feature-text">
+                <h4>Gringas</h4>
+                <p>Dos tortillas de harina con queso fundido y carne al pastor.</p>
+                <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">$35.00</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

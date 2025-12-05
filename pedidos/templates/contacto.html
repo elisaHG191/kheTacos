@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Contáctanos - La Taquería{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    
+    <div class="card">
+        <h2 style="margin-bottom: 20px; color: var(--primary);">Envíanos un mensaje</h2>
+        <p style="margin-bottom: 20px; color: var(--text-light);">
+            ¿Tienes sugerencias o quieres cotizar un evento? Escríbenos.
+        </p>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <label style="display:block; margin-bottom: 5px; font-weight:bold;">Tu Nombre:</label>
+            <input type="text" name="nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px;">
+
+            <label style="display:block; margin-bottom: 5px; font-weight:bold;">Correo Electrónico:</label>
+            <input type="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px;">
+
+            <label style="display:block; margin-bottom: 5px; font-weight:bold;">Mensaje:</label>
+            <textarea name="mensaje" rows="5" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px;"></textarea>
+
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+            </button>
+        </form>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <h3>O encuéntranos en:</h3>
+        <p style="margin-top: 10px;">
+            <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Av. Principal #123, Centro.<br>
+            <i class="fa-solid fa-phone" style="color: var(--primary);"></i> (555) 123-4567
+        </p>
+    </div>
+
+</div>
+{% endblock %}

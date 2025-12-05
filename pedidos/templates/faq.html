@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Preguntas Frecuentes - La Taquería{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 40px; margin-bottom: 30px; background: var(--primary);">
+    <h1>¿Dudas? Aquí las resolvemos</h1>
+    <p>Todo lo que necesitas saber sobre nuestros tacos y servicios.</p>
+</div>
+
+<h2 style="margin-bottom: 20px; color: var(--text-dark);">Preguntas Comunes</h2>
+
+<div class="stats-grid">
+    
+    <div class="card stat-card">
+        <div class="icon-box blue">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+        <h3>Horario de Atención</h3>
+        <p style="margin-top: 10px; color: var(--text-light);">
+            Abrimos de Lunes a Domingo de 6:00 PM a 2:00 AM.
+        </p>
+    </div>
+
+    <div class="card stat-card">
+        <div class="icon-box green">
+            <i class="fa-solid fa-truck"></i>
+        </div>
+        <h3>¿Tienen servicio a domicilio?</h3>
+        <p style="margin-top: 10px; color: var(--text-light);">
+            ¡Sí! Cubrimos toda la zona centro y colonias aledañas sin costo extra.
+        </p>
+    </div>
+
+    <div class="card stat-card">
+        <div class="icon-box orange">
+            <i class="fa-solid fa-credit-card"></i>
+        </div>
+        <h3>Métodos de Pago</h3>
+        <p style="margin-top: 10px; color: var(--text-light);">
+            Aceptamos efectivo, tarjetas de crédito/débito y transferencias.
+        </p>
+    </div>
+
+</div>
+{% endblock %}
