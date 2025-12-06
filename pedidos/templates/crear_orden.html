@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h1>Nueva Orden</h1>
+    {% if mensaje %}<div style="background:#d4edda; padding:10px; color:green">{{ mensaje }}</div>{% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <h3>1. Datos del Cliente</h3>
+        <label>Selecciona el Cliente:</label>
+        <select name="cliente" required style="padding:8px; width:50%">
+            <option value="">-- Buscar Cliente --</option>
+            {% for c in clientes %}
+                <option value="{{ c.id }}">{{ c.nombre }} {{ c.apellidos }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <hr>
+
+        <h3>2. Agregar Platillos</h3>
+        
+        <div id="lista-platillos">
+            <div class="fila-platillo" style="display:flex; gap:10px; margin-bottom:10px;">
+                
+                <select name="platillos[]" required style="padding:8px; width:60%">
+                    <option value="">-- Seleccionar Platillo --</option>
+                    {% for p in platillos %}
+                        <option value="{{ p.id }}">{{ p.nombre }} - ${{ p.precio }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="number" name="cantidades[]" value="1" min="1" placeholder="Cant." style="width:80px; padding:8px;">
+            </div>
+        </div>
+
+        <button type="button" onclick="agregarFila()" style="background:#6c757d; color:white; border:none; padding:5px 10px; cursor:pointer;">
+            + Agregar otro producto
+        </button>
+        
+        <br><br><hr><br>
+        
+        <button type="submit" class="btn-primary" style="width:100%; font-size:1.2rem;">
+            CONFIRMAR ORDEN
+        </button>
+    </form>
+</div>
+
+<script>
+    function agregarFila() {
+        // 1. Buscamos el contenedor
+        const contenedor = document.getElementById('lista-platillos');
+        
+        // 2. Copiamos la primera fila que existe (el select y el input)
+        const primeraFila = document.querySelector('.fila-platillo');
+        const nuevaFila = primeraFila.cloneNode(true);
+        
+        // 3. Limpiamos los valores de la copia para que venga vacía
+        nuevaFila.querySelector('select').value = "";
+        nuevaFila.querySelector('input').value = "1";
+        
+        // 4. La agregamos al final del contenedor
+        contenedor.appendChild(nuevaFila);
+    }
+</script>
+{% endblock %}

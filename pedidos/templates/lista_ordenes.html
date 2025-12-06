@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Historial de Órdenes</h1>
+<a href="{% url 'crear_orden' %}" class="btn-primary">Nueva Orden</a>
+<br><br>
+
+<div class="stats-grid">
+    {% for orden in ordenes %}
+    <div class="card">
+        <h3>Orden #{{ orden.id }}</h3>
+        <p><strong>Cliente:</strong> {{ orden.cliente.nombre }} {{ orden.cliente.apellidos }}</p>
+        <p><strong>Fecha:</strong> {{ orden.fecha|date:"d M Y H:i" }}</p>
+        <p style="font-size:1.5rem; color:var(--primary); font-weight:bold;">
+            Total: ${{ orden.total }}
+        </p>
+        
+        <hr>
+        <ul style="margin-left:20px; margin-top:10px; font-size:0.9rem;">
+            {% for detalle in orden.detalleorden_set.all %}
+                <li>{{ detalle.cantidad }}x {{ detalle.platillo.nombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

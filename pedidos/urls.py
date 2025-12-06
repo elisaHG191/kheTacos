@@ -11,7 +11,8 @@ urlpatterns = [
     path('editar/<int:id_cliente>/', views.editar_cliente, name='editar_cliente'),
     path('eliminar/<int:id_cliente>/', views.eliminar_cliente, name='eliminar_cliente'),
     path('faq/', views.faq, name='faq'),
-    path('registroOrden/', views.registroOrden, name='registroOrden'),
     path('contacto/', views.contacto, name='contacto'),
-    path('menu/', views.menu, name='menu'),
+    path('menu/nuevo/', views.crear_platillo, name='crear_platillo'),
+    path('ordenes/nueva/', views.crear_orden, name='crear_orden'),
+    path('ordenes/', views.lista_ordenes, name='lista_ordenes'),
 ]

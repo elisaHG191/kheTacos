@@ -1,7 +1,76 @@
 # kheTacos\pedidos\views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q # [IMPORTANTE] Necesario para usar "OR"
-from .models import Cliente
+from .models import Cliente, Platillo, Orden, DetalleOrden # ¡Importa los nuevos modelos!
+
+def lista_ordenes(request):
+    # Traemos las órdenes ordenadas por fecha (la más nueva primero)
+    ordenes = Orden.objects.all().order_by('-fecha')
+    return render(request, 'lista_ordenes.html', {'ordenes': ordenes})
+
+def crear_orden(request):
+    # 1. Obtener todos los clientes y platillos para mostrarlos en los select
+    clientes = Cliente.objects.all()
+    platillos = Platillo.objects.all()
+
+    if request.method == 'POST':
+        # A. Recuperar datos del Cliente
+        id_cliente = request.POST['cliente']
+        cliente_obj = Cliente.objects.get(id=id_cliente)
+
+        # B. Crear la "Cabecera" de la Orden
+        nueva_orden = Orden.objects.create(cliente=cliente_obj)
+
+        # C. Recuperar las LISTAS de platillos y cantidades
+        # getlist obtiene todos los inputs que tengan el mismo nombre
+        lista_platillos = request.POST.getlist('platillos[]')
+        lista_cantidades = request.POST.getlist('cantidades[]')
+
+        total_orden = 0
+
+        # D. Recorrer las listas y guardar cada detalle
+        # zip() une las dos listas para recorrerlas juntas (platillo 1 con cantidad 1)
+        for id_platillo, cantidad in zip(lista_platillos, lista_cantidades):
+            if id_platillo == "": continue # Saltar si está vacío
+            
+            platillo_obj = Platillo.objects.get(id=id_platillo)
+            cant = int(cantidad)
+            subtotal = platillo_obj.precio * cant
+            
+            # Guardamos el detalle
+            DetalleOrden.objects.create(
+                orden=nueva_orden,
+                platillo=platillo_obj,
+                cantidad=cant,
+                subtotal=subtotal
+            )
+            
+            total_orden += subtotal
+
+        # E. Actualizamos el total de la orden principal
+        nueva_orden.total = total_orden
+        nueva_orden.save()
+
+        return render(request, 'crear_orden.html', {
+            'mensaje': f'Orden #{nueva_orden.id} creada exitosamente',
+            'clientes': clientes,
+            'platillos': platillos
+        })
+
+    return render(request, 'crear_orden.html', {
+        'clientes': clientes, 
+        'platillos': platillos
+    })
+
+def crear_platillo(request):
+    if request.method == 'POST':
+        Platillo.objects.create(
+            nombre=request.POST['nombre'],
+            precio=request.POST['precio']
+        )
+        return render(request, 'crear_platillo.html', {'mensaje': 'Platillo agregado al menú'})
+    
+    return render(request, 'crear_platillo.html')
 
 def eliminar_cliente(request, id_cliente):
     # 1. BUSCAR: Encontramos al cliente o damos error 404 si no existe
@@ -115,6 +184,4 @@ def registroOrden(request):  # <--- TIENE QUE LLAMARSE 'home'
 def contacto(request):  # <--- TIENE QUE LLAMARSE 'home'
     return render(request, 'contacto.html')
 
-def menu(request):  # <--- TIENE QUE LLAMARSE 'home'
-    return render(request, 'menu.html')
 
